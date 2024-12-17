@@ -55,10 +55,16 @@ public class AlunoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Aluno> update(@RequestBody Aluno novosDadosAluno, @PathVariable String id) {
-        Aluno aluno = alunoService.update(novosDadosAluno, id);
+    public ResponseEntity<Aluno> update(@RequestBody AlunoDTO novosDadosAluno, @PathVariable String id) {
+        Aluno aluno = new Aluno(novosDadosAluno);
 
-        return aluno == null ? ResponseEntity.notFound().build() : ResponseEntity.ok().body(aluno);
+        Endereco endereco = cepHttpClient.findEndereco(novosDadosAluno.getCep());
+
+        aluno.setEndereco(endereco);
+
+        Aluno alunoUpdated = alunoService.update(aluno, id);
+
+        return alunoUpdated == null ? ResponseEntity.notFound().build() : ResponseEntity.ok().body(aluno);
     }
 
     @DeleteMapping("/{id}")
