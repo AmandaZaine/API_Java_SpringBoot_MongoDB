@@ -64,7 +64,7 @@ public class AlunoController {
 
         Aluno alunoUpdated = alunoService.update(aluno, id);
 
-        return alunoUpdated == null ? ResponseEntity.notFound().build() : ResponseEntity.ok().body(aluno);
+        return alunoUpdated == null ? ResponseEntity.notFound().build() : ResponseEntity.ok().body(alunoUpdated);
     }
 
     @DeleteMapping("/{id}")

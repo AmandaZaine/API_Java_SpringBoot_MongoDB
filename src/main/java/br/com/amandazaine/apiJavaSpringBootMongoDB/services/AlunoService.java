@@ -34,6 +34,7 @@ public class AlunoService {
             aluno.setNome(novosDadosAluno.getNome());
             aluno.setSobrenome(novosDadosAluno.getSobrenome());
             aluno.setCpf(novosDadosAluno.getCpf());
+            aluno.setEndereco(novosDadosAluno.getEndereco());
             return alunoRepository.save(aluno);
         }
 
